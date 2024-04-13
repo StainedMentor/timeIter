@@ -22,15 +22,12 @@ def measure(name):
 
 def start():
     global iter_start
-    if show_in_window:
-        df = get_measurement_stats()
-        # show(df)
     iter_start = time.time()
 
 
 
 def get_measurement_stats():
-    df = pd.DataFrame(measurements)
+    df = pd.DataFrame(dict([(key, pd.Series(value)) for key, value in measurements.items()]))
 
     min_values = df.min()
     max_values = df.max()
